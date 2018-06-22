@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <script async custom-element="amp-iframe"
+  src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+  <title>Zürich</title>
+  <style>
+   
+   #mapCanavas {
+    height: 100%;
+   }
+   
+   html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+   }
+   h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+   }
+
+   td.left {
+    width: 25%;
+    font-size: xx-small;
+   }
+
+   td.right {
+    width: 75%;
+    vertical-align: top;
+    padding-left: 25px;
+   }
+   img.resize {
+   width:150px;
+   height:150px;
+
+   .gm-style-iw, .gm-style-iw div {
+min-height: 200px;
+min-width: 300px;
+background-color: #FFF;
+}
+
+
+  </style>
+ </head>
+ <body>
+  <div id="mapCanavas"></div>
+  <script>
+
+   function initMap() {
+
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+      mapTypeId: 'roadmap',
+      
+    };
+
+     map = new google.maps.Map(document.getElementById('mapCanavas'), mapOptions);
+     map.setTilt(50);
+
+
+
+    
+var icons = {
+ bar: {
+  icon: {url:'Bilder/bar.png',
+  scaledSize: new google.maps.Size(50, 50)
+   }
+ },
+ restaurant: {
+  icon: {url:'Bilder/meal.png',
+  scaledSize: new google.maps.Size(60, 60)
+   }
+  }
+ 
+};
+     var markers = [
+    [ '01 Bar', 47.3737326, 8.5431057,'bar'],
+    [ 'Montblack', 47.3737178, 8.521879, 'bar'],
+    [ 'The Bite', 47.3773715, 8.527775, 'restaurant'],
+    [ 'Simplon', 47.3766413, 8.5391136, 'restaurant'],
+    [ 'Roots', 47.3762949, 8.5385372, 'restaurant'],   
+    [ 'Markthalle', 47.3877671, 8.5262685, 'restaurant'],
+    [ 'Luca2', 47.3668091, 8.5616751, 'restaurant'],
+    [ 'Raygrodski', 47.3746924, 8.51666279999999, 'bar'],
+    [ 'Più', 47.3768495, 8.5347862, 'restaurant'],
+    [ 'Oliver Twist Pub', 47.3722512999999, 8.54429309999999, 'bar'],
+    [ 'Ona Poké', 47.3678607, 8.5359719, 'restaurant'],
+    [ 'Mesa', 47.3833839, 8.5431867, 'restaurant'],
+    [ 'Linde Oberstrass', 47.3834367, 8.5479821, 'restaurant'],
+    [ 'Kleine Freiheit', 47.379202, 8.544685, 'bar'],
+    [ 'Karl der Grosse', 47.3697613, 8.5446219, 'bar'],
+    [ 'IQ Bar', 47.3900385, 8.5222682, 'bar'],
+    [ 'Sternen Grill', 47.3672532999999, 8.54562389999999, 'restaurant'],
+    [ 'Al Forno', 47.3806267999999, 8.54833399999999,'restaurant'],
+    [ 'Pumpstation', 47.3636537, 8.5463788, 'restaurant'],
+    [ 'Gartenhof', 47.371911, 8.525576, 'restaurant'],
+    [ 'Eldorado', 47.383714, 8.532626, 'bar'],
+    [ 'Holy Cow!', 47.37545356, 8.54476528, 'restaurant'],
+    [ 'Chuchi am Wasser', 47.3830239, 8.53961, 'restaurant'],
+    [ 'Didis Frieden', 47.3793334, 8.5434762, 'restaurant'],
+    [ 'Chez Nhan', 47.3698871, 8.518454, 'restaurant'],
+    [ 'bQm', 47.3758995, 8.5467092, 'bar'],
+    [ 'Barfussbar', 47.368472, 8.542017, 'bar'],
+    [ 'Aurora', 47.3731899, 8.53806099999999, 'restaurant'],
+    [ 'apoTHEKE', 47.37354689, 8.55284187, 'bar'],
+    [ 'Zum Alten Löwen', 47.3850074, 8.5482442, 'restaurant'],
+    ];
+    
+
+    var infoWindowContent = [
+    
+['<div class="info_content">' +
+'<h2>01 Bar</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/01-bar.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b>Rudolf-Brun-Brücke <br><br><b>Adresse:</b>  Limmatquai 86, 8001 Zürich<br><br><a href= "http://01bar.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Montblack</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/montblack.jpg"><br>Quelle: montblack-bar.ch</td><td class = "right"><b>Haltestelle:</b> Kalkbreite<br><br><b>Adresse:</b> Kalkbreitestrasse 10, 8003 Zürich<br><br><a href="http://www.montblack-bar.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>The Bite</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/the-bite-terrace.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Kanonengasse<br><br><b>Adresse:</b> Brauerstrasse 15, 8004 Zürich<br><br><a href="https://www.thebite.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Simplon</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/simplon.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Bahnhofstrasse / HB<br><br><b>Adresse:</b> Schützengasse 16, 8001 Zürich<br><br><a href="http://www.simplonbar.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Roots</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/roots.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Löwenplatz<br><br><b>Adresse:</b> Lintheschergasse 15, 8001 Zürich<br><br><a href="http://rootsandfriends.com/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+
+['<div class="info_content">' +
+'<h2>Markthalle</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/markthalle.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Dammweg<br><br><b>Adresse:</b> Limmatstrasse 231, 8005 Zürich<br><br><a href="http://www.restaurant-maha.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Luca<sup>2<sup></h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/luca2.jpg"><br>Quelle: restaurant-luca.ch</td><td class = "right"><b>Haltestelle:</b> Hölderlinstrasse<br><br><b>Adresse:</b> Asylstrasse 81, 8032 Zürich<br><br><a href="http://www.restaurant-luca.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Raygrodski</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/raygrodski.jpg"><br>Quelle: raygrodski.ch</td><td class = "right"><b>Haltestelle:</b> Lochergut<br><br><b>Adresse:</b> Sihlfeldstrasse 49, 8003 Zürich<br><br><a href="http://www.raygrodski.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Più</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/piu.jpg"><br>Quelle: piu-ristorante.ch</td><td class = "right"><b>Haltestelle:</b> Sihlpost / HB<br><br><b>Adresse:</b> Kasernenstrasse 95, 8004 Zürich<br><br><a href="https://www.piu-ristorante.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Oliver Twist Pub</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/OliverTwist.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Rathaus<br><br><b>Adresse:</b> Rindermarkt 6, 8001 Zürich<br><br><a href="http://www.pickwick.ch/en/our-pub/zuerich/home/index.php" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Ona Poké</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/ona_poke.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Stockerstrasse<br><br><b>Adresse:</b> Bleicherweg 19, 8002 Zürich<br><br><a href="https://onapoke.com/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Mesa</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/mesa.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Sonneggstrasse<br><br><b>Adresse:</b> Weinbergstrasse 75, 8006 Zürich<br><br><a href="https://mesa-restaurant.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Linde Oberstrass</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/lindeoberstrass.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Winkelriedstrasse<br><br><b>Adresse:</b> Universitätstrasse 91, 8006 Zürich<br><br><a href="https://www.linde-oberstrass.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Kleine Freiheit</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/kleinefreiheit.jpg"><br>Quelle: kleinefreiheit.ch</td><td class = "right"><b>Haltestelle:</b> Haldenegg<br><br><b>Adresse:</b> Weinbergstrasse 30, 8006 Zürich<br><br><a href="https://kleinefreiheit.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Karl der Grosse</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/KarlDerGrosse.jpg"><br>Quelle: karldergrosse.ch</td><td class = "right"><b>Haltestelle:</b> Helmhaus<br><br><b>Adresse:</b> Kirchgasse 14, 8001 Zürich<br><br><a href="www.karldergrosse.ch" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>IQ Bar</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/iq-bar.jpg"><br>Quelle: EDIN MEHIC</td><td class = "right"><b>Haltestelle:</b> Escher-Wyss-Platz<br><br><b>Adresse:</b> Hardstrasse 316, 8005 Zürich<br><br><a href="https://www.iq-bar.com/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Sternen Grill</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/sternengrill.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Bellevue<br><br><b>Adresse:</b> Theaterstrasse 22, 8001 Zürich<br><br><a href="https://www.sternengrill.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Al Forno</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/alforno.jpg"><br>Quelle: ristorante-alforno.ch</td><td class = "right"><b>Haltestelle:</b> Haldenbach<br><br><b>Adresse:</b> Orellistrasse 21, 8044 Zürich<br><br><a href="http://www.ristorante-alforno.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Pumpstation</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/pumpstation.jpg"><br>Quelle: Pumpstation.ch</td><td class = "right"><b>Haltestelle:</b> Opernhaus<br><br><b>Adresse:</b> Utoquai 10, 8008 Zürich<br><br><a href="http://www.pumpstation.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Gartenhof</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/gartenhof.jpg"><br>Quelle: bestofswissgastro.ch</td><td class = "right"><b>Haltestelle:</b> Werd<br><br><b>Adresse:</b> Gartenhofstrasse 1, 8004 Zürich<br><br><a href="https://www.gartenhof.net/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Eldorado</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/eldorado.jpg"><br>Quelle: eldorado.ch</td><td class = "right"><b>Haltestelle:</b> Limmatplatz<br><br><b>Adresse:</b> Limmatstrasse 109, 8005 Zürich<br><br><a href="http://www.eldorado-zh.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Holy Cow!</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/holycow.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Central<br><br><b>Adresse:</b> Zähringerstrasse 28, 8001 Zürich<br><br><a href="https://www.holycow.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Chuchi am Wasser</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/chuchi.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Beckenhof<br><br><b>Adresse:</b> Wasserwerkstrasse 21, 8006 Zürich<br><br><a href="http://dynamo.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Didis Frieden</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/frieden.jpg"><br>Quelle: didisfrieden.ch</td><td class = "right"><b>Haltestelle:</b> Stampfenbachplatz<br><br><b>Adresse:</b> Stampfenbachstrasse 32, 8006 Zürich<br><br><a href="https://www.didisfrieden.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Chez Nhan</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/cheznhan.jpg"><br>Quelle: yellow.local.ch</td><td class = "right"><b>Haltestelle:</b> Wiedikon Schmiede<br><br><b>Adresse:</b> Kehlhofstrasse 4, 8003 Zürich<br><br><a href="http://www.cheznhan.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>bQm</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/bQm.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> ETH / Universitätsspital<br><br><b>Adresse:</b> Leonhardstrasse 34, 8092 Zürich<br><br><a href="http://www.bqm-bar.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Barfussbar</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/barfussbar.jpg"><br>Quelle: Tripadvisor</td><td class = "right"><b>Haltestelle:</b> Börsenstrasse<br><br><b>Adresse:</b> Stadthausquai, 8001 Zürich<br><br><a href="http://www.barfussbar.ch/index.php/home.html" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Aurora</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/aurora.jpg"><br>Quelle: aurora-restaurant.ch</td><td class = "right"><b>Haltestelle:</b> Rennweg<br><br><b>Adresse:</b> Bahnhofstrasse 61, 8001 Zürich<br><br><a href="https://www.aurora-restaurant.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>apoTHEKE</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/apotheke.jpg"><br>Quelle: Facbook.com/apoTHEKEzh</td><td class = "right"><b>Haltestelle:</b> Kantonsschule<br><br><b>Adresse:</b> Zürichbergstrasse 17, 8032 Zürich<br><br><a href="http://www.apotheke-zh.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+['<div class="info_content">' +
+'<h2>Zum Alten Löwen</h2>'+
+ '<table><tr><td class="left"> <img class="resize" src="Bilder/alterloewen.jpg"><br>Quelle: altenloewen.ch</td><td class = "right"><b>Haltestelle:</b> Seilbahn Rigiblick<br><br><b>Adresse:</b> Universitätstrasse 111, 8006 Zürich<br><br><a href="https://www.altenloewen.ch/" target="_blank" rel="noopener">Homepage</a></td></tr></table>'+ '</div>'],
+
+
+  ];
+    
+  
+  var infoWindow = new google.maps.InfoWindow({
+      maxWidth: 450
+        });
+
+  
+  
+  for( i = 0; i < markers.length; i++ ) {
+    var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+    bounds.extend(position);
+    marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      icon: icons[markers[i][3]].icon,
+      title: markers[i][0]
+    });
+     
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infoWindow.setContent(infoWindowContent[i][0]);
+        infoWindow.open(map, marker);
+      }
+    })(marker, i));
+
+    
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+  }
+
+  
+  var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+    this.setZoom(14);
+    google.maps.event.removeListener(boundsListener);
+  });
+
+  var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+  
+}
+
+google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLduG92YqxOvi3vrnPWTy8PnBIY5YEdw&callback=initMap">
+  </script>
+ </body>
+</html>
