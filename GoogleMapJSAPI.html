@@ -11,12 +11,13 @@
    #mapCanavas {
     height: 100%;
    }
-   
+   /*CSS settings for the body of the map
    html, body {
     height: 100%;
     margin: 0;
     padding: 0;
    }
+   /*CSS settings for info window
    h2 {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -51,6 +52,7 @@ background-color: #FFF;
 
    function initMap() {
 
+    // Display a map on the web page
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
@@ -63,20 +65,21 @@ background-color: #FFF;
 
 
 
-    
+// Sets own markers    
 var icons = {
  bar: {
-  icon: {url:'Bilder/bar.png',
+  icon: {url:'picture/bar.png',
   scaledSize: new google.maps.Size(50, 50)
    }
  },
  restaurant: {
-  icon: {url:'Bilder/meal.png',
+  icon: {url:'picture/meal.png',
   scaledSize: new google.maps.Size(60, 60)
    }
   }
  
 };
+    // Multiple markers location, latitude, longitude and ID for the markers
      var markers = [
     [ '01 Bar', 47.3737326, 8.5431057,'bar'],
     [ 'Montblack', 47.3737178, 8.521879, 'bar'],
@@ -110,8 +113,8 @@ var icons = {
     [ 'Zum Alten Löwen', 47.3850074, 8.5482442, 'restaurant'],
     ];
     
-
-    var infoWindowContent = [
+//InfoWindow content
+var infoWindowContent = [
     
 ['<div class="info_content">' +
 '<h2>01 Bar</h2>'+
@@ -237,13 +240,13 @@ var icons = {
 
   ];
     
-  
+  // Add multiple markers to map and sets size
   var infoWindow = new google.maps.InfoWindow({
-      maxWidth: 450
+      maxWidth: 450 
         });
 
   
-  
+  // Place each marker on the map 
   for( i = 0; i < markers.length; i++ ) {
     var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
     bounds.extend(position);
@@ -253,7 +256,7 @@ var icons = {
       icon: icons[markers[i][3]].icon,
       title: markers[i][0]
     });
-     
+   // Place the InfoWindow to the markers and 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
         infoWindow.setContent(infoWindowContent[i][0]);
@@ -261,26 +264,26 @@ var icons = {
       }
     })(marker, i));
 
-    
+    // Center the map to fit all markers on the screen
     map.fitBounds(bounds);
     map.panToBounds(bounds);
   }
 
-  
+  //Set Zool level 
   var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
     this.setZoom(14);
     google.maps.event.removeListener(boundsListener);
   });
-
+//Place the transit Layer
   var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
   
 }
-
+// Load initialize function
 google.maps.event.addDomListener(window, 'load', initMap);
 </script>
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsLduG92YqxOvi3vrnPWTy8PnBIY5YEdw&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=ADD_YOUR_API">
   </script>
  </body>
 </html>
